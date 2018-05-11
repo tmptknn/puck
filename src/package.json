@@ -1,0 +1,14 @@
+{
+  "name": "docker_nodejs_airhockey",
+  "version": "1.0.0",
+  "description": "nodejs airpuck",
+  "author": "tmptknn",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "websocket": "^1.0.26"
+  }
+}
