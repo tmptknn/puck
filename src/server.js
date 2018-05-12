@@ -74,11 +74,15 @@ const damping = 0.01;
 let scoreRed = 0;
 let scoreBlue = 0;
 
-function goal() {
+function sendScore(){
   const data = JSON.stringify({team0Score:scoreBlue, team1Score:scoreRed });
   for(let i=0; i<maxclients; i++) {
     if(clients[i]) clients[i].connection.sendUTF(data);
   }
+}
+
+function goal() {
+  sendScore();
   puck.speedX = 0;
   puck.speedY = 0;
   puck.x = width/2+(Math.random()-0.5)*puck.size;
@@ -158,6 +162,7 @@ wsServer.on('request', function(request) {
     connection.sendUTF(objects[i].getJSON())
   }
   clients[id] = {connection:connection};
+  sendScore();
   clientId+=1;
   if(clientId >=maxclients) clientId = 0;
   connection.on('message', function(message) {
@@ -181,6 +186,8 @@ wsServer.on('request', function(request) {
   connection.on('close', function(connection) {
     console.log("bye "+id);
     clients[id] = null;
+    objects[id].move(-50,-50);
+    move(objects[id]);
   });
 });
 setInterval(update,30);
