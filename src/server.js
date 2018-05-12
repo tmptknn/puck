@@ -180,4 +180,4 @@ wsServer.on('request', function(request) {
     clients[id] = null;
   });
 });
-setInterval(update,8);
+setInterval(update,30);

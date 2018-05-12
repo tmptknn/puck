@@ -91,8 +91,10 @@ canvas.addEventListener('touchmove', touchMove,false);
 
 refresh();
 
+console.log(""+location.host+location.hostName);
+const ho = location.host.split(":")[0];
 
-socket = new WebSocket("ws://"+(location.host?location.host:"localhost")+":1337");
+socket = new WebSocket("ws://"+(ho?ho:"localhost")+":1337");
 
 socket.onopen = function() {
    console.log("connection open");
