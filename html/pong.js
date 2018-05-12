@@ -91,7 +91,6 @@ canvas.addEventListener('touchmove', touchMove,false);
 
 refresh();
 
-console.log(""+location.host+location.hostName);
 const ho = location.host.split(":")[0];
 
 socket = new WebSocket("ws://"+(ho?ho:"localhost")+":1337");

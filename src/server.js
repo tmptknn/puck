@@ -66,9 +66,9 @@ let socket;
 let puck;
 
 for(let i=0; i< maxclients; i++){
-  objects[i] = new ServerObject(i,50,width/2,height/2);
+  objects[i] = new ServerObject(i,50,-50,-50);
 }
-objects[maxclients] = puck = new ServerObject(maxclients,25,400,300);
+objects[maxclients] = puck = new ServerObject(maxclients,25,width/2,height/2);
 
 const damping = 0.01;
 let scoreRed = 0;
@@ -154,6 +154,9 @@ wsServer.on('request', function(request) {
     clients[id].connection.close();
   }
   connection.sendUTF(JSON.stringify({yourId:id}));
+  for(let i=0; i<=maxclients; i++){
+    connection.sendUTF(objects[i].getJSON())
+  }
   clients[id] = {connection:connection};
   clientId+=1;
   if(clientId >=maxclients) clientId = 0;
