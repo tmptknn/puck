@@ -20,7 +20,7 @@ app.get('/pongVR.js', (req, res) => {
   res.sendFile('/html/pongVR.js');
 });
 
-app.get('/threejs.js', (req, res) => {
+app.get('/three.js', (req, res) => {
   res.sendFile('/html/three.js');
 });
 
