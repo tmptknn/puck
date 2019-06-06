@@ -12,6 +12,22 @@ app.get('/', (req, res) => {
   res.sendFile('/html/index.html');
 });
 
+app.get('/indexVR.html', (req, res) => {
+  res.sendFile('/html/indexVr.html');
+});
+
+app.get('/pongVR.js', (req, res) => {
+  res.sendFile('/html/pongVR.js');
+});
+
+app.get('/threejs.js', (req, res) => {
+  res.sendFile('/html/three.js');
+});
+
+app.get('/WebVR.js', (req, res) => {
+  res.sendFile('/html/WebVR.js');
+});
+
 app.get('/pong.js', (req, res) => {
   res.sendFile('/html/pong.js');
 });
