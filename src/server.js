@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/indexVR.html', (req, res) => {
-  res.sendFile('/html/indexVr.html');
+  res.sendFile('/html/indexVR.html');
 });
 
 app.get('/pongVR.js', (req, res) => {
