@@ -149,10 +149,12 @@ function update(){
       puck.x+dx > width - puck.size)
       && (puck.y + dy < height/4 -puck.size ||
         puck.y + dx > height*3/4+puck.size)) {
+    sendSound(puck.x,puck.y, 0.5);
     dx = -dx
   }
 
   if(puck.y+dy < puck.size || puck.y+dy > height - puck.size){
+    sendSound(puck.x,puck.y, 0.5);
     dy = -dy
   }
 
