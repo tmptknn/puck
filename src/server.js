@@ -97,6 +97,13 @@ function sendScore(){
   }
 }
 
+function sendSound(x,y,v){
+  const data = JSON.stringify({coordX:x, coordY:y, volume:v });
+  for(let i=0; i<maxclients; i++) {
+    if(clients[i]) clients[i].connection.sendUTF(data);
+  }
+}
+
 function goal() {
   sendScore();
   puck.speedX = 0;
@@ -131,6 +138,7 @@ function update(){
       if(vn <= 0){
         dx -= (2*(vn/nn))*xd;
         dy -= (2*(vn/nn))*yd;
+        sendSound(puck.x,puck.y, inside/puck.size);
       }
       dx += xd*inside/(len*2);
       dy += yd*inside/(len*2);
