@@ -116,7 +116,7 @@ function sendGameOn() {
        allout =false;
     }
   }
-  if(listenclient){}
+  if(listenclient){
     if(allout){
       listenclient.connection.sendUTF(JSON.stringify({gameOn:0}));
     }else{
