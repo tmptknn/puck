@@ -110,6 +110,21 @@ function updateScore() {
    }
 }
 
+function sendGameOn() {
+  for(let i=0; i< maxclients; i++){
+    if(clients[i]){
+       allout =false;
+    }
+  }
+  if(listenclient){}
+    if(allout){
+      listenclient.connection.sendUTF(JSON.stringify({gameOn:0}));
+    }else{
+      listenclient.connection.sendUTF(JSON.stringify({gameOn:1}));
+    }
+  }
+}
+
 function update(){
   let dx = puck.speedX*(1.0 - damping);
   let dy = puck.speedY*(1.0 - damping);
@@ -174,6 +189,7 @@ wsServer.on('request', function(request) {
   }
   clients[id] = {connection:connection};
   sendScore();
+  sendGameOn();
   clientId+=1;
   if(clientId >=maxclients) clientId = 0;
   connection.on('message', function(message) {
@@ -197,6 +213,8 @@ wsServer.on('request', function(request) {
   connection.on('close', function(connection) {
     console.log("bye "+id);
     clients[id] = null;
+    alloout = true;
+    sendGameOn();
     objects[id].move(-50,-50);
     move(objects[id]);
   });
@@ -213,6 +231,7 @@ listenWsServer.on('request', function(request) {
   connection.sendUTF(JSON.stringify({yourId:id}));
   listenclient = {connection:connection};
   sendScore();
+  sendGameOn();
   connection.on('message', function(message) {
     console.log("Listener send message??!")
   });
