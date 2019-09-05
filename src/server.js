@@ -214,7 +214,6 @@ wsServer.on('request', function(request) {
   connection.on('close', function(connection) {
     console.log("bye "+id);
     clients[id] = null;
-    alloout = true;
     sendGameOn();
     objects[id].move(-50,-50);
     move(objects[id]);
