@@ -27,6 +27,10 @@ var server = http.createServer(function(request, response) {
 server.listen(1337, function() { });
 
 
+var listenserver = http.createServer(function(request, response) {
+});
+listenserver.listen(57331, function() { });
+
 class ServerObject{
   constructor(id, size, x, y){
     this.id = id;
@@ -55,7 +59,13 @@ class ServerObject{
 const wsServer = new WebSocketServer({
   httpServer: server
 });
+
+const listWsServer = new WebSocketServer({
+  httpServer: listenserver
+});
+
 const clients = [];
+let listenclient = null;
 let clientId = 0;
 const maxclients = 4;
 const width = 1280;
@@ -147,6 +157,7 @@ function move(object){
   for(let i=0; i<maxclients; i++) {
     if(clients[i] && (i !== object.id)) clients[i].connection.sendUTF(data);
   }
+  if(listenclient) listenclient.connection.sendUTF(data)
 }
 
 // WebSocket server
@@ -188,6 +199,26 @@ wsServer.on('request', function(request) {
     clients[id] = null;
     objects[id].move(-50,-50);
     move(objects[id]);
+  });
+});
+
+
+listenWsServer.on('request', function(request) {
+  var connection = request.accept(null, request.origin);
+  const id = 9;
+  if(listenclient){
+    console.log("Dropping old connection "+id);
+    listenclient.connection.close();
+  }
+  connection.sendUTF(JSON.stringify({yourId:id}));
+  listenclient = {connection:connection};
+  sendScore();
+  connection.on('message', function(message) {
+    console.log("Listener send message??!")
+  });
+
+  connection.on('close', function(connection) {
+    console.log("bye listener "+id);
   });
 });
 setInterval(update,30);
