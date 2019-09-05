@@ -111,6 +111,7 @@ function updateScore() {
 }
 
 function sendGameOn() {
+  let allout=true;
   for(let i=0; i< maxclients; i++){
     if(clients[i]){
        allout =false;
