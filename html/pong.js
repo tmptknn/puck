@@ -43,9 +43,9 @@ const maxclients = 4;
 let score =[0,0];
 
 for(let i=0; i< maxclients; i++){
-  objects[i] = new GameObject(i,50,canvas.width/2,canvas.height/2,(i%2===0)?"red":"blue");
+  objects[i] = new GameObject(i,75,canvas.width/2,canvas.height/2,(i%2===0)?"red":"blue");
 }
-objects[maxclients] = new GameObject(maxclients,25,400,300, "white");
+objects[maxclients] = new GameObject(maxclients,50,400,300, "white");
 let myId = 0;
 
 function mouseMove(e){
