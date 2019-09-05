@@ -76,9 +76,9 @@ let socket;
 let puck;
 
 for(let i=0; i< maxclients; i++){
-  objects[i] = new ServerObject(i,50,-50,-50);
+  objects[i] = new ServerObject(i,100,-500,-50);
 }
-objects[maxclients] = puck = new ServerObject(maxclients,25,width/2,height/2);
+objects[maxclients] = puck = new ServerObject(maxclients,75,width/2,height/2);
 
 const damping = 0.01;
 let scoreRed = 0;
