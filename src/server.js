@@ -89,6 +89,7 @@ function sendScore(){
   for(let i=0; i<maxclients; i++) {
     if(clients[i]) clients[i].connection.sendUTF(data);
   }
+  if(listenclient) listenclient.connection.sendUTF(data);
   if(scoreRed>=9 || scoreBlue>=9){
     scoreRed = 0;
     scoreBlue = 0;
