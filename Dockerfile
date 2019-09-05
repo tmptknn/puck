@@ -9,6 +9,6 @@ RUN mkdir html
 COPY html/index.html html/index.html
 COPY html/pong.js html/pong.js
 RUN npm install
-EXPOSE 80 443 1337
+EXPOSE 80 443 1337 57331
 
 CMD ["npm","start"]
