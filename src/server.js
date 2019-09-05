@@ -60,7 +60,7 @@ const wsServer = new WebSocketServer({
   httpServer: server
 });
 
-const listWsServer = new WebSocketServer({
+const listenWsServer = new WebSocketServer({
   httpServer: listenserver
 });
 
